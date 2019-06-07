@@ -1,0 +1,26 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
+
+# Explicação ds linhas acima.
+# Neste arquivo configuramos o redirect da nossa aplicação.
+#
+# 'RewriteEngine On' é usado para ativar o rewriting da url
+#
+# 'RewriteCond %{REQUEST_FILENAME} !-d'
+# 'RewriteCond %{REQUEST_FILENAME} !-f''
+# RewriteCond indica que o rewrite só vai funcionar se o 
+# REQUEST_FILENAME não for um diretório ou um arquivo. 
+# Ou seja, vai silenciar o redirect se o REQUEST_FILENAME 
+# existir efetivamente
+#
+# RewriteRule ^ index.php [QSA,L]
+# RewriteRule indica que qualquer endereço que passar
+# pela regra anterior vai ser direcionado para index.php.
+# Além disso, a opção QSA permite enviar parâmetros da 
+# requisição GET para para o index.php. Por ex. se for
+# requisitado /user?id=1 será transformada para
+# index.php?url=user&id=1. A opção L significa que se 
+# nessa regra não precisa testar outras regras abaixo,
+# caso estas forem definidas posteriormente.
