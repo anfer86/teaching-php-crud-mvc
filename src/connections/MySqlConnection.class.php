@@ -2,7 +2,7 @@
 
 class MySqlConnection{
 
-	private static $connection;
+	private static $instance = null;
  
     private function __construct(){
 
@@ -10,12 +10,13 @@ class MySqlConnection{
  
     public static function getInstance(){
 
-    	if (is_null(self::$connection)){
+    	if (is_null(self::$instance)){
     		include_once 'config.php';
-    		self::$connection = new mysqli($server, $user, $pass, $db);
+    		self::$instance = new mysqli($server, $user, $pass, $db);
+            self::$instance->set_charset("utf8");
     	}
 
-    	return self::$connection;
+    	return self::$instance;
     }
 
 
